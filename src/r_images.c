@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "d_pcx.h"
 #include "d_wal.h"
 #if USE_PNG
+#include <zlib.h>
 #include <png.h>
 #endif
 #if USE_JPG
@@ -993,7 +994,7 @@ IMG_LOAD( PNG ) {
         break;
     case PNG_COLOR_TYPE_GRAY:
         if( bitdepth < 8 ) {
-            png_set_gray_1_2_4_to_8( png_ptr );
+            png_set_expand_gray_1_2_4_to_8( png_ptr );
         }
         // fall through
     case PNG_COLOR_TYPE_GRAY_ALPHA:
